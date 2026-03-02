@@ -11,6 +11,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Accordion } from "@/components/ui/accordion";
 
 export default function Home() {
   const { schedule, isLoading } = useSchedule();
@@ -92,9 +93,11 @@ export default function Home() {
                 
                 <div className="space-y-4">
                   {todayMeals.length > 0 ? (
-                    todayMeals.map((meal) => (
-                      <MealCard key={meal.id} meal={meal} />
-                    ))
+                    <Accordion type="single" collapsible className="w-full">
+                      {todayMeals.map((meal) => (
+                        <MealCard key={meal.id} meal={meal} />
+                      ))}
+                    </Accordion>
                   ) : (
                     <div className="text-center p-12 bg-muted/10 rounded-xl border border-dashed border-muted/50">
                       <p className="text-muted-foreground">No meals found for {currentDay}.</p>
@@ -113,7 +116,7 @@ export default function Home() {
                       Alerts Active
                     </h4>
                     <p className="text-xs text-muted-foreground">
-                      Notifications are set for 9 AM, 1 PM, 7 PM, and 11 PM daily.
+                      Notifications are set for 9 AM, 1 PM, 5 PM, 7 PM, and 11 PM daily.
                     </p>
                   </CardContent>
                 </Card>
@@ -141,10 +144,12 @@ export default function Home() {
                         <h3 className="text-xl font-bold font-headline text-primary">{day}</h3>
                         <div className="ml-4 flex-1 h-px bg-border/50" />
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {dayMeals.map(meal => (
-                          <MealCard key={meal.id} meal={meal} />
-                        ))}
+                      <div className="grid grid-cols-1 gap-1">
+                        <Accordion type="single" collapsible className="w-full">
+                          {dayMeals.map(meal => (
+                            <MealCard key={meal.id} meal={meal} />
+                          ))}
+                        </Accordion>
                       </div>
                     </section>
                   );
