@@ -34,6 +34,7 @@ export default function Home() {
   
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
+      <InstallPWA />
       <NotificationManager />
       
       <header className="mb-12 text-center">
@@ -160,8 +161,6 @@ export default function Home() {
           </TabsContent>
         </Tabs>
       )}
-
-      <InstallPWA />
 
       <footer className="mt-20 pt-8 border-t border-muted flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-4">
         <p>© 2024 ScheduleSync App. Eat healthy, stay synchronized.</p>
