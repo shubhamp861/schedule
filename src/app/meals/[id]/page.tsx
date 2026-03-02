@@ -26,7 +26,14 @@ export default function MealDetailPage() {
   if (isLoading) return <div className="p-12 text-center text-muted-foreground">Loading details...</div>;
   if (!meal) return <div className="p-12 text-center text-muted-foreground">Meal not found.</div>;
 
-  const bgImage = PlaceHolderImages.find(img => img.id === `${meal.type}-bg`) || PlaceHolderImages[0];
+  // Added defensive check and fallback for bgImage
+  const bgImage = PlaceHolderImages.find(img => img.id === `${meal.type}-bg`) || 
+                  PlaceHolderImages[0] || 
+                  { 
+                    imageUrl: 'https://picsum.photos/seed/fallback/800/600', 
+                    description: 'Meal image', 
+                    imageHint: 'healthy meal' 
+                  };
 
   return (
     <main className="min-h-screen animate-in fade-in duration-500">

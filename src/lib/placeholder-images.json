@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "breakfast-bg",
+      "description": "Healthy breakfast layout",
+      "imageUrl": "https://images.unsplash.com/photo-1627308594190-a057cd4bfac8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwYnJlYWtmYXN0fGVufDB8fHx8MTc3MjQyNTMwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy breakfast"
+    },
+    {
+      "id": "midday-bg",
+      "description": "Nutritious lunch bowl",
+      "imageUrl": "https://images.unsplash.com/photo-1709364937137-848a0d422d8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtaWRkYXklMjBtZWFsfGVufDB8fHx8MTc3MjQyNTMwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "midday meal"
+    },
+    {
+      "id": "dinner-bg",
+      "description": "Elegant dinner plate",
+      "imageUrl": "https://images.unsplash.com/photo-1511378156040-1259b5bcd0fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZWxpY2lvdXMlMjBkaW5uZXJ8ZW58MHx8fHwxNzcyNDI1MzAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "delicious dinner"
+    }
+  ]
 }
