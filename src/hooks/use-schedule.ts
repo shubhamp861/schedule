@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MealSchedule, Meal } from '@/types/schedule';
+import { getInitialSchedule } from '@/lib/schedule-transformer';
 
 const STORAGE_KEY = 'schedulesync_data';
 
@@ -16,7 +17,12 @@ export function useSchedule() {
         setSchedule(JSON.parse(saved));
       } catch (e) {
         console.error("Failed to parse schedule", e);
+        setSchedule(getInitialSchedule());
       }
+    } else {
+      const initial = getInitialSchedule();
+      setSchedule(initial);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     }
     setIsLoading(false);
   }, []);

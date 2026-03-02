@@ -15,6 +15,7 @@ export function NotificationManager() {
     
     const checkSchedule = () => {
       const now = new Date();
+      const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const currentTime = `${hours}:${minutes}`;
@@ -22,29 +23,19 @@ export function NotificationManager() {
       if (currentTime === lastCheckedMinute.current) return;
       lastCheckedMinute.current = currentTime;
 
-      // Check for meals
-      const dueMeal = schedule.find(meal => meal.time === currentTime);
+      // Check for meals specifically for today
+      const dueMeal = schedule.find(meal => 
+        meal.day === currentDay && meal.time === currentTime
+      );
+
       if (dueMeal) {
-        sendNotification(`Time for ${dueMeal.type}: ${dueMeal.title}`, {
-          body: `Click to view details for your ${dueMeal.type} meal.`,
+        sendNotification(`${dueMeal.title} Time`, {
+          body: dueMeal.description.length > 60 
+            ? `${dueMeal.description.substring(0, 57)}...` 
+            : dueMeal.description,
           onClick: () => {
             window.focus();
             router.push(`/meals/${dueMeal.id}`);
-          }
-        });
-      }
-
-      // Nightly prep notification at 11:00 PM (23:00)
-      if (currentTime === '23:00') {
-        const breakfast = schedule.find(m => m.type === 'breakfast');
-        sendNotification(`Breakfast Prep Reminder`, {
-          body: breakfast 
-            ? `It's 11 PM! Time to prepare for tomorrow's breakfast: ${breakfast.title}.` 
-            : `It's 11 PM! Don't forget to prep your breakfast for tomorrow.`,
-          onClick: () => {
-            window.focus();
-            if (breakfast) router.push(`/meals/${breakfast.id}`);
-            else router.push('/');
           }
         });
       }

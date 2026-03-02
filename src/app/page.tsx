@@ -4,13 +4,23 @@ import { useSchedule } from '@/hooks/use-schedule';
 import { ScheduleImport } from '@/components/ScheduleImport';
 import { MealCard } from '@/components/MealCard';
 import { NotificationManager } from '@/components/NotificationManager';
-import { CalendarDays, BellRing } from 'lucide-react';
+import { CalendarDays, BellRing, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const { schedule, isLoading } = useSchedule();
+  const [currentDay, setCurrentDay] = useState('');
+
+  useEffect(() => {
+    setCurrentDay(new Date().toLocaleDateString('en-US', { weekday: 'long' }));
+  }, []);
+
+  const todayMeals = schedule
+    .filter(meal => meal.day === currentDay)
+    .sort((a, b) => a.time.localeCompare(b.time));
   
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
@@ -22,9 +32,9 @@ export default function Home() {
             <BellRing className="w-8 h-8 text-primary-foreground" />
           </div>
         </div>
-        <h1 className="text-4xl font-bold font-headline mb-3 text-foreground tracking-tight">ScheduleSync</h1>
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Your simple meal companion. Import your plan and never miss a habit.
+        <h1 className="text-4xl font-bold font-headline mb-2 text-foreground tracking-tight">ScheduleSync</h1>
+        <p className="text-muted-foreground text-lg mb-4">
+          Diet plan for <span className="text-primary font-bold">{currentDay}</span>
         </p>
       </header>
 
@@ -45,27 +55,32 @@ export default function Home() {
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-2xl font-bold font-headline flex items-center">
                 <CalendarDays className="w-6 h-6 mr-2 text-primary" />
-                Today's Timeline
+                Timeline
               </h2>
               <Button variant="ghost" size="sm" onClick={() => {
                 localStorage.removeItem('schedulesync_data');
                 window.location.reload();
               }}>
+                <RefreshCw className="w-4 h-4 mr-2" />
                 Reset Plan
               </Button>
             </div>
             
             <div className="space-y-4">
-              {schedule
-                .sort((a, b) => a.time.localeCompare(b.time))
-                .map((meal) => (
+              {todayMeals.length > 0 ? (
+                todayMeals.map((meal) => (
                   <MealCard key={meal.id} meal={meal} />
-                ))}
+                ))
+              ) : (
+                <div className="text-center p-12 bg-muted/10 rounded-xl border border-dashed border-muted/50">
+                  <p className="text-muted-foreground">No meals found for {currentDay}.</p>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-bold font-headline">Daily Summary</h3>
+            <h3 className="text-xl font-bold font-headline">Sync Status</h3>
             
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="pt-6">
@@ -74,10 +89,16 @@ export default function Home() {
                   Notifications Active
                 </h4>
                 <p className="text-xs text-muted-foreground">
-                  Keep this tab open to receive real-time notifications for your scheduled meals and the 11:00 PM prep reminder.
+                  The app is now tracking your {currentDay} schedule. Keep this tab open to receive timely alerts.
                 </p>
               </CardContent>
             </Card>
+
+            <div className="p-4 bg-accent/10 rounded-xl border border-accent/20">
+              <p className="text-xs text-accent-foreground font-medium">
+                Tip: Your daily 11 PM prep reminders are automatically updated based on tomorrow's needs.
+              </p>
+            </div>
           </div>
         </div>
       )}

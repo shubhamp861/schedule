@@ -2,6 +2,7 @@ export type MealType = 'breakfast' | 'midday' | 'dinner';
 
 export interface Meal {
   id: string;
+  day: string; // "Monday", "Tuesday", etc.
   type: MealType;
   time: string; // HH:mm format
   title: string;
