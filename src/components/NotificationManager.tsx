@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useSchedule } from '@/hooks/use-schedule';
 import { sendNotification, requestNotificationPermission } from '@/lib/notifications';
 import { Button } from '@/components/ui/button';
-import { Bell, Clock, AlertCircle, Timer } from 'lucide-react';
+import { Bell, Clock, AlertCircle, Timer, Send } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Meal } from '@/types/schedule';
+import { useToast } from '@/hooks/use-toast';
 
 export function NotificationManager() {
   const { schedule } = useSchedule();
+  const { toast } = useToast();
   const lastCheckedMinute = useRef<string>('');
   const [permissionStatus, setPermissionStatus] = useState<NotificationPermission | 'unsupported'>('default');
   const [nextMeal, setNextMeal] = useState<Meal | null>(null);
@@ -47,7 +49,6 @@ export function NotificationManager() {
       const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
       const currentDayIdx = dayOrder.indexOf(currentDay);
 
-      // Get all upcoming meals (today after now, or following days)
       const allUpcoming = [...schedule].sort((a, b) => {
         const dayA = dayOrder.indexOf(a.day);
         const dayB = dayOrder.indexOf(b.day);
@@ -55,7 +56,6 @@ export function NotificationManager() {
         return a.time.localeCompare(b.time);
       });
 
-      // Find first meal that is after 'now'
       let next = allUpcoming.find(m => {
         const mDayIdx = dayOrder.indexOf(m.day);
         if (mDayIdx > currentDayIdx) return true;
@@ -63,7 +63,6 @@ export function NotificationManager() {
         return false;
       });
 
-      // If none found for the rest of the week, take the first meal of the week (next Monday)
       if (!next && allUpcoming.length > 0) {
         next = allUpcoming[0];
       }
@@ -71,7 +70,6 @@ export function NotificationManager() {
       if (next) {
         setNextMeal(next);
         
-        // Calculate diff
         const [targetH, targetM] = next.time.split(':').map(Number);
         const targetDate = new Date(now);
         targetDate.setHours(targetH, targetM, 0, 0);
@@ -97,7 +95,7 @@ export function NotificationManager() {
     };
 
     const interval = setInterval(updateStatus, 1000);
-    updateStatus(); // Initial call
+    updateStatus(); 
     return () => clearInterval(interval);
   }, [schedule]);
 
@@ -108,15 +106,38 @@ export function NotificationManager() {
       sendNotification("Notifications Enabled!", {
         body: "You will now receive alerts for your diet plan."
       });
+      toast({
+        title: "Success",
+        description: "Notifications have been enabled.",
+      });
     } else {
       setPermissionStatus(Notification.permission);
+      toast({
+        variant: "destructive",
+        title: "Permission Denied",
+        description: "Please enable notifications in your browser settings.",
+      });
+    }
+  };
+
+  const handleTestNotification = () => {
+    if (permissionStatus !== 'granted') {
+      handleRequestPermission();
+    } else {
+      sendNotification("Test Alert Successful!", {
+        body: "Your ScheduleSync notifications are properly configured and working.",
+      });
+      toast({
+        title: "Test Sent",
+        description: "A test notification has been sent to your device.",
+      });
     }
   };
 
   return (
     <div className="space-y-4 mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
       {/* Permission Request Alert */}
-      {permissionStatus !== 'granted' && (
+      {permissionStatus !== 'granted' ? (
         <Alert variant={permissionStatus === 'denied' ? "destructive" : "default"} className="bg-primary/5 border-primary/20">
           <Bell className="h-4 w-4" />
           <AlertTitle className="font-headline font-bold">
@@ -130,11 +151,18 @@ export function NotificationManager() {
             </p>
             {permissionStatus !== 'denied' && permissionStatus !== 'unsupported' && (
               <Button size="sm" onClick={handleRequestPermission} className="whitespace-nowrap font-bold shadow-sm">
-                Request Permission
+                Enable Notifications
               </Button>
             )}
           </AlertDescription>
         </Alert>
+      ) : (
+        <div className="flex justify-end">
+          <Button variant="outline" size="sm" onClick={handleTestNotification} className="text-xs flex items-center gap-2">
+            <Send className="w-3 h-3" />
+            Send Test Alert
+          </Button>
+        </div>
       )}
 
       {/* Countdown Timer */}
