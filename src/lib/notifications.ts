@@ -26,7 +26,6 @@ export const sendNotification = (title: string, options?: NotificationOptions & 
   if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
     const notification = new Notification(title, {
       ...options,
-      badge: '/favicon.ico', // Optional
       silent: false,
     });
 

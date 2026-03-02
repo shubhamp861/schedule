@@ -1,3 +1,4 @@
+
 import rawData from './diet-plan.json';
 import { Meal, MealSchedule } from '@/types/schedule';
 
@@ -33,13 +34,20 @@ export function getInitialSchedule(): MealSchedule {
 
   Object.entries(rawData).forEach(([day, meals]) => {
     Object.entries(meals).forEach(([key, desc]) => {
+      const description = desc as string;
+      // Extract ingredients by splitting on common delimiters if present
+      const ingredients = description.includes(',') 
+        ? description.split(',').map(s => s.trim())
+        : [description];
+
       schedule.push({
         id: `${day.toLowerCase()}-${key.replace(/_/g, '-')}`,
         day,
         type: types[key as keyof typeof types] || 'breakfast',
         time: times[key as keyof typeof times] || '08:00',
         title: titles[key as keyof typeof titles] || 'Meal',
-        description: desc as string
+        description,
+        ingredients
       });
     });
   });
