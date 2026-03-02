@@ -4,6 +4,7 @@ import { useSchedule } from '@/hooks/use-schedule';
 import { ScheduleImport } from '@/components/ScheduleImport';
 import { MealCard } from '@/components/MealCard';
 import { NotificationManager } from '@/components/NotificationManager';
+import { InstallPWA } from '@/components/InstallPWA';
 import { CalendarDays, BellRing, RefreshCw, LayoutGrid, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -116,14 +117,14 @@ export default function Home() {
                       Alerts Active
                     </h4>
                     <p className="text-xs text-muted-foreground">
-                      Notifications are set for 9 AM, 1 PM, 5 PM, 7 PM, and 11 PM daily.
+                      Notifications are set for your requested daily routine.
                     </p>
                   </CardContent>
                 </Card>
 
                 <div className="p-4 bg-accent/10 rounded-xl border border-accent/20">
                   <p className="text-xs text-accent-foreground font-medium">
-                    Note: Your schedule repeats weekly to maintain your monthly diet consistency.
+                    Note: Your schedule repeats weekly to maintain consistency.
                   </p>
                 </div>
               </div>
@@ -159,6 +160,8 @@ export default function Home() {
           </TabsContent>
         </Tabs>
       )}
+
+      <InstallPWA />
 
       <footer className="mt-20 pt-8 border-t border-muted flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-4">
         <p>© 2024 ScheduleSync App. Eat healthy, stay synchronized.</p>
