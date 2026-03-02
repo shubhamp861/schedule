@@ -11,16 +11,26 @@ export function useSchedule() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const initial = getInitialSchedule();
     const saved = localStorage.getItem(STORAGE_KEY);
+    
     if (saved) {
       try {
-        setSchedule(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        // If the number of items differs, the underlying JSON likely updated (e.g., added 5pm reminder)
+        // We auto-refresh to ensure the user has the latest plan.
+        if (parsed.length !== initial.length) {
+          setSchedule(initial);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+        } else {
+          setSchedule(parsed);
+        }
       } catch (e) {
         console.error("Failed to parse schedule", e);
-        setSchedule(getInitialSchedule());
+        setSchedule(initial);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
       }
     } else {
-      const initial = getInitialSchedule();
       setSchedule(initial);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     }
