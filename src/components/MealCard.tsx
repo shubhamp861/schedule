@@ -41,7 +41,7 @@ export function MealCard({ meal }: { meal: Meal }) {
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-1">
                   <Badge variant="secondary" className="capitalize font-medium">
-                    {meal.type}
+                    {meal.type === 'shopping' ? 'Market Buy' : meal.type}
                   </Badge>
                   <div className="flex items-center text-sm text-muted-foreground font-medium">
                     <Clock className="w-4 h-4 mr-1" />
