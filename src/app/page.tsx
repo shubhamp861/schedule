@@ -3,16 +3,15 @@
 import { useSchedule } from '@/hooks/use-schedule';
 import { ScheduleImport } from '@/components/ScheduleImport';
 import { MealCard } from '@/components/MealCard';
-import { AiPrepTip } from '@/components/AiPrepTip';
 import { NotificationManager } from '@/components/NotificationManager';
-import { CalendarDays, PlusCircle, Settings, BellRing } from 'lucide-react';
+import { CalendarDays, BellRing } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function Home() {
   const { schedule, isLoading } = useSchedule();
   
-  const breakfast = schedule.find(m => m.type === 'breakfast');
-
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">
       <NotificationManager />
@@ -25,7 +24,7 @@ export default function Home() {
         </div>
         <h1 className="text-4xl font-bold font-headline mb-3 text-foreground tracking-tight">ScheduleSync</h1>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Your intelligent meal companion. Import your plan and never miss a healthy habit.
+          Your simple meal companion. Import your plan and never miss a habit.
         </p>
       </header>
 
@@ -48,7 +47,10 @@ export default function Home() {
                 <CalendarDays className="w-6 h-6 mr-2 text-primary" />
                 Today's Timeline
               </h2>
-              <Button variant="ghost" size="sm" onClick={() => localStorage.removeItem('schedulesync_data')}>
+              <Button variant="ghost" size="sm" onClick={() => {
+                localStorage.removeItem('schedulesync_data');
+                window.location.reload();
+              }}>
                 Reset Plan
               </Button>
             </div>
@@ -63,8 +65,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-bold font-headline">Daily Assistant</h3>
-            <AiPrepTip breakfastMeal={breakfast} />
+            <h3 className="text-xl font-bold font-headline">Daily Summary</h3>
             
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="pt-6">
@@ -91,6 +92,3 @@ export default function Home() {
     </main>
   );
 }
-
-import Link from 'next/link';
-import { Card, CardContent } from '@/components/ui/card';

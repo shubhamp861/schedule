@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'ScheduleSync - Intelligent Meal Planning',
-  description: 'Manage your meal schedule with smart browser notifications and AI tips.',
+  title: 'ScheduleSync - Meal Planning',
+  description: 'Manage your meal schedule with smart browser notifications.',
 };
 
 export default function RootLayout({

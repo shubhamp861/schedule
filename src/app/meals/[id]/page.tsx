@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useSchedule } from '@/hooks/use-schedule';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Clock, Info, CheckCircle2, MapPin } from 'lucide-react';
+import { ArrowLeft, Clock, Info, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useEffect, useState } from 'react';
@@ -112,7 +112,7 @@ export default function MealDetailPage() {
           </div>
 
           <div className="p-6 bg-primary/10 rounded-2xl border border-primary/20">
-            <h4 className="font-bold font-headline text-primary mb-2">Smart Tip</h4>
+            <h4 className="font-bold font-headline text-primary mb-2">Daily Tip</h4>
             <p className="text-sm text-foreground/70 leading-relaxed italic">
               "Remember to hydrate at least 15 minutes before your {meal.type} to improve digestion and metabolism."
             </p>
