@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "breakfast-bg",
+      "description": "Healthy breakfast layout",
+      "imageUrl": "https://picsum.photos/seed/breakfast1/800/600",
+      "imageHint": "healthy breakfast"
+    },
+    {
+      "id": "midday-bg",
+      "description": "Nutritious lunch bowl",
+      "imageUrl": "https://picsum.photos/seed/lunch1/800/600",
+      "imageHint": "midday meal"
+    },
+    {
+      "id": "dinner-bg",
+      "description": "Elegant dinner plate",
+      "imageUrl": "https://picsum.photos/seed/dinner1/800/600",
+      "imageHint": "delicious dinner"
+    }
+  ]
+}
