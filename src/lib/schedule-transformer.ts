@@ -17,18 +17,18 @@ export function getInitialSchedule(): MealSchedule {
     morning_preparing: 'Morning Routine',
     breakfast: 'Breakfast',
     mid_day_meal: 'Main Meal',
-    "5pm_reminder": 'Shopping List',
+    "5pm_reminder": 'Market Buy (Shopping)',
     dinner: 'Dinner',
     "11pm_reminder": 'Nightly Prep'
   };
 
   const types = {
-    morning_preparing: 'breakfast' as const,
+    morning_preparing: 'prep' as const,
     breakfast: 'breakfast' as const,
     mid_day_meal: 'midday' as const,
-    "5pm_reminder": 'midday' as const,
+    "5pm_reminder": 'shopping' as const,
     dinner: 'dinner' as const,
-    "11pm_reminder": 'dinner' as const
+    "11pm_reminder": 'prep' as const
   };
 
   Object.entries(rawData).forEach(([day, meals]) => {
