@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Info, Smartphone, Share } from 'lucide-react';
+import { Download, Smartphone, Share } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -27,6 +27,7 @@ export function InstallPWA() {
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
+    // Check if already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
       setIsInstallable(false);
     }
@@ -52,11 +53,11 @@ export function InstallPWA() {
     <div className="mt-16 p-8 bg-primary/5 rounded-3xl border border-primary/20 text-center animate-in fade-in zoom-in duration-700">
       <div className="max-w-md mx-auto space-y-4">
         <div className="bg-primary w-12 h-12 rounded-2xl flex items-center justify-center mx-auto shadow-lg mb-6">
-          <Smartphone className="text-primary-foreground w-6 h-6" />
+          <Download className="text-primary-foreground w-6 h-6" />
         </div>
-        <h3 className="text-2xl font-bold font-headline text-foreground">Get ScheduleSync on Mobile</h3>
+        <h3 className="text-2xl font-bold font-headline text-foreground">Download ScheduleSync</h3>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          Install this app on your Android or iOS device to receive meal notifications reliably and access your plan offline.
+          Install this app on your device to receive meal notifications reliably and access your plan offline.
         </p>
 
         {isInstallable ? (
@@ -65,7 +66,7 @@ export function InstallPWA() {
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-14 rounded-2xl shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95"
           >
             <Download className="w-5 h-5" />
-            Install Application
+            Download Application
           </Button>
         ) : (
           <Dialog>
@@ -74,15 +75,15 @@ export function InstallPWA() {
                 variant="outline"
                 className="w-full border-2 border-primary/30 text-primary font-bold h-14 rounded-2xl flex items-center justify-center gap-3 hover:bg-primary/5"
               >
-                <Info className="w-5 h-5" />
-                How to Install
+                <Download className="w-5 h-5" />
+                Download Application
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md rounded-3xl">
               <DialogHeader>
-                <DialogTitle className="font-headline font-bold text-xl">Installation Guide</DialogTitle>
+                <DialogTitle className="font-headline font-bold text-xl">Download Guide</DialogTitle>
                 <DialogDescription>
-                  Follow these steps to add ScheduleSync to your home screen:
+                  Follow these steps to download ScheduleSync to your home screen:
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-6 py-4">
@@ -91,7 +92,7 @@ export function InstallPWA() {
                     <Smartphone className="w-4 h-4" /> Android (Chrome)
                   </h4>
                   <p className="text-sm text-muted-foreground pl-6">
-                    Tap the three dots (menu) in the top right and select <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.
+                    Tap the <strong>three dots</strong> (menu) in the top right and select <strong>"Install app"</strong> or <strong>"Add to Home screen"</strong>.
                   </p>
                 </div>
                 <div className="space-y-3">
