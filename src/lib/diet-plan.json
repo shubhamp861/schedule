@@ -1,51 +1,58 @@
 {
   "Monday": {
-    "morning_preparing": "Warm water with lemon, 5 soaked almonds, 2 walnuts, 1 tbsp soaked black raisins",
-    "breakfast": "2 moong dal cheela with mint chutney and 1 bowl curd",
-    "mid_day_meal": "2 multigrain roti, 1 bowl rajma, palak sabzi, salad with lemon",
-    "dinner": "100g tofu sabzi with 1-2 roti and sautéed beetroot",
-    "11pm_reminder": "Soak black chana and almonds for Tuesday"
+    "morning_preparing": "Warm lemon water, soaked almonds, walnuts, black tipsins",
+    "breakfast": "Moong dal cheela with curd and guava",
+    "mid_day_meal": "Roti, rajma, palak sabzi, cucumber salad",
+    "dinner": "Tofu sabzi with roti and beetroot",
+    "5pm_reminder": "Buy paneer (100g), orange, methi leaves, broccoli, cucumber for Tuesday",
+    "11pm_reminder": "Soak moong dal (for breakfast), almonds, and raisins for Tuesday"
   },
   "Tuesday": {
-    "morning_preparing": "Warm water with lemon, pumpkin seeds (1 tbsp), soaked raisins",
-    "breakfast": "Vegetable paneer bhurji (100g paneer) with 2 multigrain roti",
-    "mid_day_meal": "Brown rice, chole curry, methi sabzi, cucumber salad with lemon",
-    "dinner": "Mixed dal with 2 roti and stir-fried broccoli",
-    "11pm_reminder": "Soak moong dal and raisins for Wednesday"
+    "morning_preparing": "Warm lemon water, soaked pumpkin seeds, soaked raisins",
+    "breakfast": "Paneer bhurji with roti and orange",
+    "mid_day_meal": "Brown rice, chole, methi sabzi, cucumber salad",
+    "dinner": "Mixed dal with roti and broccoli",
+    "5pm_reminder": "Buy papaya/amla, palak, carrot, spinach for Wednesday",
+    "11pm_reminder": "Soak black chana (for lunch), almonds, and chia seeds (for Wednesday breakfast)"
   },
   "Wednesday": {
-    "morning_preparing": "Warm water, 5 soaked almonds, 1 tbsp flaxseed powder",
-    "breakfast": "Oats cooked in milk with chia seeds and peanut butter",
-    "mid_day_meal": "2 roti, black chana curry, palak sabzi, carrot salad with lemon",
-    "dinner": "Soy chunks curry with 1-2 roti and sautéed spinach",
-    "11pm_reminder": "Soak rajma, almonds and keep milk + lemon ready for paneer (Thursday)"
+    "morning_preparing": "Warm water, soaked almonds, flaxseed (grind fresh)",
+    "breakfast": "Oats with chia seeds, peanut butter and papaya/amla",
+    "mid_day_meal": "Roti, black chana, palak sabzi, carrot salad",
+    "dinner": "Soy chunks curry with spinach and roti",
+    "5pm_reminder": "Buy milk (for paneer), lemon/vinegar, pomegranate, bhindi for Thursday",
+    "11pm_reminder": "Prepare paneer from milk; soak chole (for Thursday lunch), raisins, and almonds"
   },
   "Thursday": {
     "morning_preparing": "Warm lemon water, walnuts, soaked raisins",
-    "breakfast": "Sprouts salad with chopped vegetables and 1 glass buttermilk",
-    "mid_day_meal": "Brown rice, masoor dal, bhindi sabzi, salad with lemon",
-    "dinner": "Paneer (100g) with mixed vegetable sabzi and 1-2 roti",
-    "11pm_reminder": "Soak chole and raisins for Friday"
+    "breakfast": "Sprouts salad, buttermilk, pomegranate",
+    "mid_day_meal": "Brown rice, masoor dal, bhindi sabzi",
+    "dinner": "Paneer sabzi with roti",
+    "5pm_reminder": "Buy guava, methi leaves, tofu, salad vegetables for Friday",
+    "11pm_reminder": "Soak rajma (for Friday lunch), almonds, and pumpkin seeds"
   },
   "Friday": {
-    "morning_preparing": "Warm water, pumpkin seeds, almonds",
-    "breakfast": "Besan cheela (2-3) with mint chutney and 1 fruit (guava/orange)",
-    "mid_day_meal": "2 multigrain roti, rajma curry, methi sabzi, salad",
-    "dinner": "Tofu stir fry with vegetables and 1-2 roti",
-    "11pm_reminder": "Soak black chana and flaxseed; keep milk + lemon ready for paneer (Sunday)"
+    "morning_preparing": "Warm water, soaked pumpkin seeds, soaked almonds",
+    "breakfast": "Besan cheela with guava",
+    "mid_day_meal": "Roti, rajma, methi sabzi",
+    "dinner": "Tofu stir fry with vegetables and roti",
+    "5pm_reminder": "Buy orange, palak, beetroot, curd for Saturday",
+    "11pm_reminder": "Soak moong dal (if needed), almonds, and chia seeds (for Saturday breakfast)"
   },
   "Saturday": {
-    "morning_preparing": "Warm lemon water, flaxseed powder, soaked raisins",
-    "breakfast": "Vegetable upma with peanuts and 1 bowl curd",
+    "morning_preparing": "Warm lemon water, flaxseed (grind fresh), soaked raisins",
+    "breakfast": "Vegetable upma, curd, orange",
     "mid_day_meal": "Brown rice, chole, palak sabzi, beetroot salad",
-    "dinner": "Mixed dal with 2 roti and sautéed broccoli",
-    "11pm_reminder": "Soak moong dal and almonds for Sunday"
+    "dinner": "Mixed dal with roti and broccoli",
+    "5pm_reminder": "Buy paneer (100g), papaya, methi leaves, spinach for Sunday",
+    "11pm_reminder": "Soak black chana (for Sunday lunch), almonds, and raisins"
   },
   "Sunday": {
-    "morning_preparing": "Warm water with lemon, almonds, walnuts",
-    "breakfast": "Paneer paratha (moderate oil) with curd",
-    "mid_day_meal": "2 roti, black chana curry, methi sabzi, salad with lemon",
-    "dinner": "Soy chunks curry with sautéed spinach and 1-2 roti",
-    "11pm_reminder": "Soak rajma and raisins for Monday"
+    "morning_preparing": "Warm lemon water, soaked almonds, walnuts",
+    "breakfast": "Paneer paratha with curd and papaya",
+    "mid_day_meal": "Roti, black chana, methi sabzi",
+    "dinner": "Soy chunks curry with spinach and roti",
+    "5pm_reminder": "Buy guava, palak, beetroot, tofu for Monday",
+    "11pm_reminder": "Soak rajma (for Monday lunch), moong dal (for breakfast), and almonds"
   }
 }
