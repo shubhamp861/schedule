@@ -1,5 +1,6 @@
+
 export const requestNotificationPermission = async () => {
-  if (!('Notification' in window)) {
+  if (typeof window === 'undefined' || !('Notification' in window)) {
     console.error('This browser does not support desktop notifications');
     return false;
   }
@@ -9,22 +10,32 @@ export const requestNotificationPermission = async () => {
   }
 
   if (Notification.permission !== 'denied') {
-    const permission = await Notification.requestPermission();
-    return permission === 'granted';
+    try {
+      const permission = await Notification.requestPermission();
+      return permission === 'granted';
+    } catch (error) {
+      console.error('Error requesting notification permission:', error);
+      return false;
+    }
   }
 
   return false;
 };
 
 export const sendNotification = (title: string, options?: NotificationOptions & { onClick?: () => void }) => {
-  if (Notification.permission === 'granted') {
+  if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
     const notification = new Notification(title, {
-      icon: '/favicon.ico', // Fallback icon
       ...options,
+      badge: '/favicon.ico', // Optional
+      silent: false,
     });
 
     if (options?.onClick) {
-      notification.onclick = options.onClick;
+      notification.onclick = (event) => {
+        event.preventDefault();
+        options.onClick?.();
+        notification.close();
+      };
     }
   }
 };
