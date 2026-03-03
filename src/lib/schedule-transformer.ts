@@ -47,7 +47,7 @@ export function getDietSchedule(): MealSchedule {
         id: `health-${day.toLowerCase()}-${key.replace(/_/g, '-')}`,
         day,
         type: types[key as keyof typeof types] || 'breakfast',
-        time: times[key as keyof typeof times] || '08:00',
+        time: times[key as keyof typeof types] || '08:00',
         title: titles[key as keyof typeof titles] || 'Meal',
         description,
         ingredients

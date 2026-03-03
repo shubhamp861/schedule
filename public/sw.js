@@ -1,29 +1,24 @@
+self.addEventListener('push', function(event) {
+  const data = event.data ? event.data.json() : {};
+  const title = data.title || 'RoutineSync Reminder';
+  const options = {
+    body: data.body || 'It is time for your scheduled task!',
+    icon: 'https://picsum.photos/seed/appicon/192/192',
+    badge: 'https://picsum.photos/seed/appicon/192/192',
+    data: data.url || '/'
+  };
 
-self.addEventListener('install', (event) => {
-  self.skipWaiting();
+  event.waitUntil(self.registration.showNotification(title, options));
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener('notificationclick', (event) => {
+self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-  const urlToOpen = event.notification.data?.url || '/';
-
   event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
-      // Check if there is already a window open and focus it if so
-      for (let i = 0; i < windowClients.length; i++) {
-        const client = windowClients[i];
-        if (client.url.includes(urlToOpen) && 'focus' in client) {
-          return client.focus();
-        }
-      }
-      // If no window is open, open a new one
-      if (clients.openWindow) {
-        return clients.openWindow(urlToOpen);
-      }
-    })
+    clients.openWindow(event.notification.data)
   );
+});
+
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
 });
