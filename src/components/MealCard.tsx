@@ -2,7 +2,7 @@
 
 import { Meal } from '@/types/schedule';
 import { Badge } from '@/components/ui/badge';
-import { Clock, ChefHat, Coffee, Sun, Utensils, Info, CheckCircle2, ShoppingCart, Sparkles } from 'lucide-react';
+import { Clock, ChefHat, Coffee, Sun, Utensils, Info, CheckCircle2, ShoppingCart, Sparkles, Droplets } from 'lucide-react';
 import {
   AccordionContent,
   AccordionItem,
@@ -15,6 +15,7 @@ const typeIcons = {
   dinner: Utensils,
   shopping: ShoppingCart,
   prep: Sparkles,
+  skincare: Droplets,
 };
 
 const typeColors = {
@@ -23,6 +24,7 @@ const typeColors = {
   dinner: "bg-purple-500/10 text-purple-500",
   shopping: "bg-green-500/10 text-green-500",
   prep: "bg-pink-500/10 text-pink-500",
+  skincare: "bg-cyan-500/10 text-cyan-500",
 };
 
 export function MealCard({ meal }: { meal: Meal }) {
@@ -41,7 +43,7 @@ export function MealCard({ meal }: { meal: Meal }) {
               <div className="flex-1">
                 <div className="flex justify-between items-center mb-1">
                   <Badge variant="secondary" className="capitalize font-medium">
-                    {meal.type === 'shopping' ? 'Market Buy' : meal.type}
+                    {meal.type === 'shopping' ? 'Market Buy' : meal.type === 'skincare' ? 'Routine' : meal.type}
                   </Badge>
                   <div className="flex items-center text-sm text-muted-foreground font-medium">
                     <Clock className="w-4 h-4 mr-1" />
@@ -73,15 +75,23 @@ export function MealCard({ meal }: { meal: Meal }) {
               <section className="pt-2">
                 <h5 className="text-sm font-bold font-headline mb-2 flex items-center text-primary uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4 mr-2" />
-                  Notes / Ingredients
+                  {meal.type === 'skincare' ? 'Steps & Products' : 'Notes / Ingredients'}
                 </h5>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {meal.ingredients.map((ing, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mr-2" />
-                      {ing}
-                    </li>
-                  ))}
+                <ul className="space-y-3">
+                  {meal.ingredients.map((ing, idx) => {
+                    const [product, instruction] = ing.includes(':') ? ing.split(':') : [ing, null];
+                    return (
+                      <li key={idx} className="flex items-start text-sm text-muted-foreground bg-background/50 p-3 rounded-lg border border-border/40">
+                        <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold mr-3 mt-0.5 shrink-0">
+                          {idx + 1}
+                        </div>
+                        <div>
+                          <p className="font-bold text-foreground leading-tight mb-1">{product}</p>
+                          {instruction && <p className="text-xs opacity-80">{instruction.trim()}</p>}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             )}

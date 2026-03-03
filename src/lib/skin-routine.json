@@ -1,0 +1,118 @@
+{
+  "Monday": {
+    "day": {
+      "time": "Morning (7:00 - 8:00 AM)",
+      "steps": [
+        {
+          "product": "Salicylic Acid Face Wash",
+          "instruction": "Massage for 20-30 seconds on wet face and rinse with lukewarm water"
+        },
+        {
+          "product": "Derma Decode 10% Azelaic Acid Serum",
+          "instruction": "Apply pea-sized amount on dry face and wait 60 seconds"
+        },
+        {
+          "product": "Minimalist 10% Niacinamide Serum",
+          "instruction": "Apply 2-3 drops and gently pat into skin. Wait 60 seconds"
+        },
+        {
+          "product": "Oil-Free Gel Moisturizer",
+          "instruction": "Apply pea-sized amount evenly on face"
+        },
+        {
+          "product": "Sunscreen SPF 30+",
+          "instruction": "Apply 2 finger-length amount evenly on face and neck"
+        }
+      ]
+    },
+    "night": {
+      "time": "Night (9:30 - 10:30 PM)",
+      "steps": [
+        {
+          "product": "Salicylic Acid Face Wash",
+          "instruction": "Cleanse for 20-30 seconds and pat dry"
+        },
+        {
+          "product": "The Derma Co 2% Salicylic Acid Serum",
+          "instruction": "Apply 2-3 drops on completely dry skin. Do not mix with other acids"
+        },
+        {
+          "product": "Oil-Free Gel Moisturizer",
+          "instruction": "Apply evenly after 1-2 minutes"
+        }
+      ]
+    }
+  },
+  "Tuesday": {
+    "day": "Same as Monday Morning Routine",
+    "night": {
+      "time": "Night (9:30 - 10:30 PM)",
+      "steps": [
+        {
+          "product": "Salicylic Acid Face Wash",
+          "instruction": "Cleanse for 20-30 seconds and pat dry"
+        },
+        {
+          "product": "Derma Decode 10% Azelaic Acid Serum",
+          "instruction": "Apply pea-sized amount and wait 1 minute"
+        },
+        {
+          "product": "Oil-Free Gel Moisturizer",
+          "instruction": "Apply evenly"
+        }
+      ]
+    }
+  },
+  "Wednesday": {
+    "day": "Same as Monday Morning Routine",
+    "night": "Same as Monday Night Routine"
+  },
+  "Thursday": {
+    "day": "Same as Monday Morning Routine",
+    "night": {
+      "time": "Night (9:30 - 10:30 PM)",
+      "steps": [
+        {
+          "product": "Salicylic Acid Face Wash",
+          "instruction": "Cleanse and pat dry"
+        },
+        {
+          "product": "Minimalist 10% Niacinamide Serum",
+          "instruction": "Apply 2-3 drops and wait 1 minute"
+        },
+        {
+          "product": "Oil-Free Gel Moisturizer",
+          "instruction": "Apply evenly"
+        }
+      ]
+    }
+  },
+  "Friday": {
+    "day": "Same as Monday Morning Routine",
+    "night": "Same as Monday Night Routine"
+  },
+  "Saturday": {
+    "day": "Same as Monday Morning Routine",
+    "night": "Same as Tuesday Night Routine"
+  },
+  "Sunday": {
+    "day": "Same as Monday Morning Routine",
+    "night": {
+      "time": "Night (9:30 - 10:30 PM)",
+      "steps": [
+        {
+          "product": "Salicylic Acid Face Wash",
+          "instruction": "Cleanse and pat dry"
+        },
+        {
+          "product": "Minimalist 10% Niacinamide Serum (Optional)",
+          "instruction": "Apply 2-3 drops if skin feels normal"
+        },
+        {
+          "product": "Oil-Free Gel Moisturizer",
+          "instruction": "Apply evenly"
+        }
+      ]
+    }
+  }
+}

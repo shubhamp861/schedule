@@ -1,50 +1,65 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { MealSchedule, Meal } from '@/types/schedule';
-import { getInitialSchedule } from '@/lib/schedule-transformer';
+import { MealSchedule, Meal, RoutineType } from '@/types/schedule';
+import { getDietSchedule, getSkinSchedule } from '@/lib/schedule-transformer';
 
-const STORAGE_KEY = 'schedulesync_data';
+const STORAGE_KEY_HEALTH = 'schedulesync_data_health';
+const STORAGE_KEY_SKIN = 'schedulesync_data_skin';
+const STORAGE_KEY_MODE = 'schedulesync_mode';
 
 export function useSchedule() {
+  const [routineMode, setRoutineMode] = useState<RoutineType>('health');
   const [schedule, setSchedule] = useState<MealSchedule>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const initial = getInitialSchedule();
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const savedMode = localStorage.getItem(STORAGE_KEY_MODE) as RoutineType || 'health';
+    setRoutineMode(savedMode);
+    loadSchedule(savedMode);
+    setIsLoading(false);
+  }, []);
+
+  const loadSchedule = (mode: RoutineType) => {
+    const key = mode === 'health' ? STORAGE_KEY_HEALTH : STORAGE_KEY_SKIN;
+    const initial = mode === 'health' ? getDietSchedule() : getSkinSchedule();
+    const saved = localStorage.getItem(key);
     
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        // If the number of items differs, the underlying JSON likely updated (e.g., added 5pm reminder)
-        // We auto-refresh to ensure the user has the latest plan.
         if (parsed.length !== initial.length) {
           setSchedule(initial);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+          localStorage.setItem(key, JSON.stringify(initial));
         } else {
           setSchedule(parsed);
         }
       } catch (e) {
-        console.error("Failed to parse schedule", e);
         setSchedule(initial);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+        localStorage.setItem(key, JSON.stringify(initial));
       }
     } else {
       setSchedule(initial);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
+      localStorage.setItem(key, JSON.stringify(initial));
     }
-    setIsLoading(false);
-  }, []);
+  };
+
+  const toggleMode = () => {
+    const newMode = routineMode === 'health' ? 'skin' : 'health';
+    setRoutineMode(newMode);
+    localStorage.setItem(STORAGE_KEY_MODE, newMode);
+    loadSchedule(newMode);
+  };
 
   const updateSchedule = (newSchedule: MealSchedule) => {
     setSchedule(newSchedule);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newSchedule));
+    const key = routineMode === 'health' ? STORAGE_KEY_HEALTH : STORAGE_KEY_SKIN;
+    localStorage.setItem(key, JSON.stringify(newSchedule));
   };
 
   const getMealById = (id: string): Meal | undefined => {
     return schedule.find((m) => m.id === id);
   };
 
-  return { schedule, updateSchedule, isLoading, getMealById };
+  return { schedule, updateSchedule, isLoading, getMealById, routineMode, toggleMode };
 }

@@ -1,4 +1,4 @@
-export type MealType = 'breakfast' | 'midday' | 'dinner' | 'shopping' | 'prep';
+export type MealType = 'breakfast' | 'midday' | 'dinner' | 'shopping' | 'prep' | 'skincare';
 
 export interface Meal {
   id: string;
@@ -11,3 +11,4 @@ export interface Meal {
 }
 
 export type MealSchedule = Meal[];
+export type RoutineType = 'health' | 'skin';

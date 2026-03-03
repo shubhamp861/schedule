@@ -5,7 +5,7 @@ import { ScheduleImport } from '@/components/ScheduleImport';
 import { MealCard } from '@/components/MealCard';
 import { NotificationManager } from '@/components/NotificationManager';
 import { InstallPWA } from '@/components/InstallPWA';
-import { CalendarDays, BellRing, RefreshCw, LayoutGrid, Clock } from 'lucide-react';
+import { CalendarDays, BellRing, RefreshCw, LayoutGrid, Clock, Sparkles, Apple } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,9 +13,10 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Accordion } from "@/components/ui/accordion";
+import { cn } from '@/lib/utils';
 
 export default function Home() {
-  const { schedule, isLoading } = useSchedule();
+  const { schedule, isLoading, routineMode, toggleMode } = useSchedule();
   const [currentDay, setCurrentDay] = useState('');
   const [isMounted, setIsMounted] = useState(false);
 
@@ -37,27 +38,58 @@ export default function Home() {
       <InstallPWA />
       <NotificationManager />
       
+      <div className="flex justify-center mb-8">
+        <div className="bg-muted p-1 rounded-full flex gap-1 shadow-sm border border-border">
+          <Button 
+            variant={routineMode === 'health' ? 'default' : 'ghost'} 
+            size="sm" 
+            className={cn("rounded-full px-6 transition-all", routineMode === 'health' && "shadow-md")}
+            onClick={() => routineMode !== 'health' && toggleMode()}
+          >
+            <Apple className="w-4 h-4 mr-2" />
+            Health
+          </Button>
+          <Button 
+            variant={routineMode === 'skin' ? 'default' : 'ghost'} 
+            size="sm" 
+            className={cn("rounded-full px-6 transition-all", routineMode === 'skin' && "shadow-md")}
+            onClick={() => routineMode !== 'skin' && toggleMode()}
+          >
+            <Sparkles className="w-4 h-4 mr-2" />
+            Skin
+          </Button>
+        </div>
+      </div>
+
       <header className="mb-12 text-center">
         <div className="flex justify-center mb-4">
-          <div className="bg-primary p-4 rounded-2xl shadow-lg">
-            <BellRing className="w-8 h-8 text-primary-foreground" />
+          <div className={cn("p-4 rounded-2xl shadow-lg transition-colors", routineMode === 'health' ? "bg-primary" : "bg-accent")}>
+            {routineMode === 'health' ? (
+              <BellRing className="w-8 h-8 text-primary-foreground" />
+            ) : (
+              <Sparkles className="w-8 h-8 text-accent-foreground" />
+            )}
           </div>
         </div>
-        <h1 className="text-4xl font-bold font-headline mb-2 text-foreground tracking-tight">ScheduleSync</h1>
+        <h1 className="text-4xl font-bold font-headline mb-2 text-foreground tracking-tight">
+          {routineMode === 'health' ? 'ScheduleSync' : 'SkinSync'}
+        </h1>
         <p className="text-muted-foreground text-lg mb-4">
-          Personalized nutrition tracking and smart alerts.
+          {routineMode === 'health' 
+            ? 'Personalized nutrition tracking and smart alerts.' 
+            : 'Scientific skincare routine and product timing.'}
         </p>
       </header>
 
       {isLoading ? (
         <div className="flex justify-center py-20">
-          <div className="animate-pulse text-muted-foreground">Syncing your schedule...</div>
+          <div className="animate-pulse text-muted-foreground">Syncing your routine...</div>
         </div>
       ) : schedule.length === 0 ? (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <ScheduleImport />
           <div className="text-center p-8 bg-muted/20 rounded-xl border border-dashed border-muted">
-            <p className="text-muted-foreground">No schedule found. Upload your JSON to get started.</p>
+            <p className="text-muted-foreground">No routine found. Upload your JSON to get started.</p>
           </div>
         </div>
       ) : (
@@ -75,11 +107,11 @@ export default function Home() {
             </TabsList>
             
             <Button variant="ghost" size="sm" onClick={() => {
-              localStorage.removeItem('schedulesync_data');
+              localStorage.removeItem(routineMode === 'health' ? 'schedulesync_data_health' : 'schedulesync_data_skin');
               window.location.reload();
             }}>
               <RefreshCw className="w-4 h-4 mr-2" />
-              Reset Plan
+              Reset Routine
             </Button>
           </div>
 
@@ -102,14 +134,14 @@ export default function Home() {
                     </Accordion>
                   ) : (
                     <div className="text-center p-12 bg-muted/10 rounded-xl border border-dashed border-muted/50">
-                      <p className="text-muted-foreground">No meals found for {currentDay}.</p>
+                      <p className="text-muted-foreground">No activities found for {currentDay}.</p>
                     </div>
                   )}
                 </div>
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-xl font-bold font-headline">Sync Status</h3>
+                <h3 className="text-xl font-bold font-headline">Status</h3>
                 
                 <Card className="bg-primary/5 border-primary/20">
                   <CardContent className="pt-6">
@@ -118,7 +150,7 @@ export default function Home() {
                       Alerts Active
                     </h4>
                     <p className="text-xs text-muted-foreground">
-                      Notifications are set for your requested daily routine.
+                      Notifications are set for your requested daily {routineMode} routine.
                     </p>
                   </CardContent>
                 </Card>
@@ -163,7 +195,7 @@ export default function Home() {
       )}
 
       <footer className="mt-20 pt-8 border-t border-muted flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-4">
-        <p>© 2024 ScheduleSync App. Eat healthy, stay synchronized.</p>
+        <p>© 2024 RoutineSync App. Stay healthy, stay synchronized.</p>
         <div className="flex gap-6">
           <Link href="#" className="hover:text-primary transition-colors">Privacy</Link>
           <Link href="#" className="hover:text-primary transition-colors">Help</Link>
