@@ -1,117 +1,221 @@
 {
   "Monday": {
     "day": {
-      "time": "Morning (7:00 - 8:00 AM)",
+      "time": "07:00-08:00 AM",
       "steps": [
         {
+          "order": 1,
           "product": "Salicylic Acid Face Wash",
-          "instruction": "Massage for 20-30 seconds on wet face and rinse with lukewarm water"
+          "wait_after": "0 minutes",
+          "instruction": "Massage for 20-30 seconds on wet face, rinse with lukewarm water, pat dry"
         },
         {
+          "order": 2,
           "product": "Derma Decode 10% Azelaic Acid Serum",
-          "instruction": "Apply pea-sized amount on dry face and wait 60 seconds"
+          "wait_after": "1 minute",
+          "instruction": "Apply pea-sized amount on dry skin evenly"
         },
         {
+          "order": 3,
           "product": "Minimalist 10% Niacinamide Serum",
-          "instruction": "Apply 2-3 drops and gently pat into skin. Wait 60 seconds"
+          "wait_after": "1 minute",
+          "instruction": "Apply 2-3 drops and gently pat"
         },
         {
+          "order": 4,
           "product": "Oil-Free Gel Moisturizer",
-          "instruction": "Apply pea-sized amount evenly on face"
+          "wait_after": "1 minute",
+          "instruction": "Apply pea-sized amount evenly"
         },
         {
+          "order": 5,
           "product": "Sunscreen SPF 30+",
-          "instruction": "Apply 2 finger-length amount evenly on face and neck"
+          "wait_after": "0 minutes",
+          "instruction": "Apply 2 finger-length amount on face and neck"
         }
       ]
     },
     "night": {
-      "time": "Night (9:30 - 10:30 PM)",
+      "time": "09:30-10:30 PM",
       "steps": [
         {
+          "order": 1,
           "product": "Salicylic Acid Face Wash",
-          "instruction": "Cleanse for 20-30 seconds and pat dry"
+          "wait_after": "0 minutes",
+          "instruction": "Cleanse 20-30 seconds and pat dry completely"
         },
         {
+          "order": 2,
           "product": "The Derma Co 2% Salicylic Acid Serum",
+          "wait_after": "2 minutes",
           "instruction": "Apply 2-3 drops on completely dry skin. Do not mix with other acids"
         },
         {
+          "order": 3,
           "product": "Oil-Free Gel Moisturizer",
-          "instruction": "Apply evenly after 1-2 minutes"
+          "wait_after": "0 minutes",
+          "instruction": "Apply evenly after serum absorbs"
         }
       ]
     }
   },
   "Tuesday": {
-    "day": "Same as Monday Morning Routine",
-    "night": {
-      "time": "Night (9:30 - 10:30 PM)",
+    "day": {
+      "time": "07:00-08:00 AM",
       "steps": [
         {
+          "order": 1,
           "product": "Salicylic Acid Face Wash",
-          "instruction": "Cleanse for 20-30 seconds and pat dry"
+          "wait_after": "0 minutes",
+          "instruction": "Massage for 20-30 seconds, rinse and pat dry"
         },
         {
+          "order": 2,
           "product": "Derma Decode 10% Azelaic Acid Serum",
-          "instruction": "Apply pea-sized amount and wait 1 minute"
+          "wait_after": "1 minute",
+          "instruction": "Apply pea-sized amount evenly"
         },
         {
+          "order": 3,
+          "product": "Minimalist 10% Niacinamide Serum",
+          "wait_after": "1 minute",
+          "instruction": "Apply 2-3 drops and pat gently"
+        },
+        {
+          "order": 4,
           "product": "Oil-Free Gel Moisturizer",
+          "wait_after": "1 minute",
+          "instruction": "Apply evenly"
+        },
+        {
+          "order": 5,
+          "product": "Sunscreen SPF 30+",
+          "wait_after": "0 minutes",
+          "instruction": "Apply 2 finger-length amount"
+        }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        {
+          "order": 1,
+          "product": "Salicylic Acid Face Wash",
+          "wait_after": "0 minutes",
+          "instruction": "Cleanse and pat dry"
+        },
+        {
+          "order": 2,
+          "product": "Derma Decode 10% Azelaic Acid Serum",
+          "wait_after": "1 minute",
+          "instruction": "Apply pea-sized amount evenly"
+        },
+        {
+          "order": 3,
+          "product": "Oil-Free Gel Moisturizer",
+          "wait_after": "0 minutes",
           "instruction": "Apply evenly"
         }
       ]
     }
   },
   "Wednesday": {
-    "day": "Same as Monday Morning Routine",
-    "night": "Same as Monday Night Routine"
+    "day": {
+      "time": "07:00-08:00 AM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Massage, rinse, pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 4, "product": "Oil-Free Gel Moisturizer", "wait_after": "1 minute", "instruction": "Apply evenly" },
+        { "order": 5, "product": "Sunscreen SPF 30+", "wait_after": "0 minutes", "instruction": "Apply 2 finger-length amount" }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Cleanse and pat dry completely" },
+        { "order": 2, "product": "The Derma Co 2% Salicylic Acid Serum", "wait_after": "2 minutes", "instruction": "Apply 2-3 drops on dry skin" },
+        { "order": 3, "product": "Oil-Free Gel Moisturizer", "wait_after": "0 minutes", "instruction": "Apply evenly" }
+      ]
+    }
   },
   "Thursday": {
-    "day": "Same as Monday Morning Routine",
-    "night": {
-      "time": "Night (9:30 - 10:30 PM)",
+    "day": {
+      "time": "07:00-08:00 AM",
       "steps": [
-        {
-          "product": "Salicylic Acid Face Wash",
-          "instruction": "Cleanse and pat dry"
-        },
-        {
-          "product": "Minimalist 10% Niacinamide Serum",
-          "instruction": "Apply 2-3 drops and wait 1 minute"
-        },
-        {
-          "product": "Oil-Free Gel Moisturizer",
-          "instruction": "Apply evenly"
-        }
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Massage, rinse, pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 4, "product": "Oil-Free Gel Moisturizer", "wait_after": "1 minute", "instruction": "Apply evenly" },
+        { "order": 5, "product": "Sunscreen SPF 30+", "wait_after": "0 minutes", "instruction": "Apply 2 finger-length amount" }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Cleanse and pat dry" },
+        { "order": 2, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 3, "product": "Oil-Free Gel Moisturizer", "wait_after": "0 minutes", "instruction": "Apply evenly" }
       ]
     }
   },
   "Friday": {
-    "day": "Same as Monday Morning Routine",
-    "night": "Same as Monday Night Routine"
+    "day": {
+      "time": "07:00-08:00 AM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Massage, rinse, pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 4, "product": "Oil-Free Gel Moisturizer", "wait_after": "1 minute", "instruction": "Apply evenly" },
+        { "order": 5, "product": "Sunscreen SPF 30+", "wait_after": "0 minutes", "instruction": "Apply 2 finger-length amount" }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Cleanse and pat dry completely" },
+        { "order": 2, "product": "The Derma Co 2% Salicylic Acid Serum", "wait_after": "2 minutes", "instruction": "Apply 2-3 drops on dry skin" },
+        { "order": 3, "product": "Oil-Free Gel Moisturizer", "wait_after": "0 minutes", "instruction": "Apply evenly" }
+      ]
+    }
   },
   "Saturday": {
-    "day": "Same as Monday Morning Routine",
-    "night": "Same as Tuesday Night Routine"
+    "day": {
+      "time": "07:00-08:00 AM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Massage, rinse, pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 4, "product": "Oil-Free Gel Moisturizer", "wait_after": "1 minute", "instruction": "Apply evenly" },
+        { "order": 5, "product": "Sunscreen SPF 30+", "wait_after": "0 minutes", "instruction": "Apply 2 finger-length amount" }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Cleanse and pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Oil-Free Gel Moisturizer", "wait_after": "0 minutes", "instruction": "Apply evenly" }
+      ]
+    }
   },
   "Sunday": {
-    "day": "Same as Monday Morning Routine",
-    "night": {
-      "time": "Night (9:30 - 10:30 PM)",
+    "day": {
+      "time": "07:00-08:00 AM",
       "steps": [
-        {
-          "product": "Salicylic Acid Face Wash",
-          "instruction": "Cleanse and pat dry"
-        },
-        {
-          "product": "Minimalist 10% Niacinamide Serum (Optional)",
-          "instruction": "Apply 2-3 drops if skin feels normal"
-        },
-        {
-          "product": "Oil-Free Gel Moisturizer",
-          "instruction": "Apply evenly"
-        }
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Massage, rinse, pat dry" },
+        { "order": 2, "product": "Derma Decode 10% Azelaic Acid Serum", "wait_after": "1 minute", "instruction": "Apply pea-sized amount" },
+        { "order": 3, "product": "Minimalist 10% Niacinamide Serum", "wait_after": "1 minute", "instruction": "Apply 2-3 drops" },
+        { "order": 4, "product": "Oil-Free Gel Moisturizer", "wait_after": "1 minute", "instruction": "Apply evenly" },
+        { "order": 5, "product": "Sunscreen SPF 30+", "wait_after": "0 minutes", "instruction": "Apply 2 finger-length amount" }
+      ]
+    },
+    "night": {
+      "time": "09:30-10:30 PM",
+      "steps": [
+        { "order": 1, "product": "Salicylic Acid Face Wash", "wait_after": "0 minutes", "instruction": "Cleanse and pat dry" },
+        { "order": 2, "product": "Minimalist 10% Niacinamide Serum (Optional)", "wait_after": "1 minute", "instruction": "Apply 2-3 drops if skin feels normal" },
+        { "order": 3, "product": "Oil-Free Gel Moisturizer", "wait_after": "0 minutes", "instruction": "Apply evenly" }
       ]
     }
   }

@@ -60,37 +60,34 @@ export function getDietSchedule(): MealSchedule {
 
 export function getSkinSchedule(): MealSchedule {
   const schedule: Meal[] = [];
-  const rawSkinData = skinData as any;
-
-  const resolveRoutine = (day: string, period: 'day' | 'night') => {
-    let routine = rawSkinData[day][period];
-    if (typeof routine === 'string') {
-      const parts = routine.split(' ');
-      const targetDay = parts[2]; // e.g. "Monday"
-      const targetPeriod = parts[3].toLowerCase().includes('morning') ? 'day' : 'night';
-      return rawSkinData[targetDay][targetPeriod];
-    }
-    return routine;
-  };
+  const rawSkinData = skinData as Record<string, any>;
 
   Object.keys(rawSkinData).forEach((day) => {
     ['day', 'night'].forEach((period) => {
-      const routine = resolveRoutine(day, period as 'day' | 'night');
-      if (!routine) return;
+      const routine = rawSkinData[day][period];
+      if (!routine || typeof routine === 'string') return;
 
       const timeStr = routine.time;
-      // Extract first HH:mm from "Morning (7:00 - 8:00 AM)" or "Night (9:30 - 10:30 PM)"
+      // Extract first HH:mm from "07:00-08:00 AM" or "09:30-10:30 PM"
       const timeMatch = timeStr.match(/(\d+):(\d+)/);
       let time = "08:00";
+      
       if (timeMatch) {
         let hours = parseInt(timeMatch[1]);
         const minutes = timeMatch[2];
-        if (timeStr.toLowerCase().includes('pm') && hours < 12) hours += 12;
-        if (timeStr.toLowerCase().includes('am') && hours === 12) hours = 0;
+        const isPM = timeStr.toLowerCase().includes('pm');
+        const isAM = timeStr.toLowerCase().includes('am');
+
+        if (isPM && hours < 12) hours += 12;
+        if (isAM && hours === 12) hours = 0;
+        
         time = `${String(hours).padStart(2, '0')}:${minutes}`;
       }
 
-      const steps = routine.steps.map((s: any) => `${s.product}: ${s.instruction}`);
+      const steps = routine.steps.map((s: any) => {
+        const wait = s.wait_after && s.wait_after !== '0 minutes' ? ` (Wait ${s.wait_after})` : '';
+        return `${s.product}: ${s.instruction}${wait}`;
+      });
 
       schedule.push({
         id: `skin-${day.toLowerCase()}-${period}`,
@@ -98,7 +95,7 @@ export function getSkinSchedule(): MealSchedule {
         type: 'skincare',
         time,
         title: `${period === 'day' ? 'Morning' : 'Night'} Skin Routine`,
-        description: `Scheduled skincare maintenance for ${period}.`,
+        description: `Scheduled skincare maintenance for ${day} ${period}.`,
         ingredients: steps
       });
     });

@@ -85,7 +85,7 @@ export function MealCard({ meal }: { meal: Meal }) {
                         <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold mr-3 mt-0.5 shrink-0">
                           {idx + 1}
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <p className="font-bold text-foreground leading-tight mb-1">{product}</p>
                           {instruction && <p className="text-xs opacity-80">{instruction.trim()}</p>}
                         </div>
