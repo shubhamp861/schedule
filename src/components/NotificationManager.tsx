@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
@@ -41,6 +42,7 @@ export function NotificationManager() {
           lastCheckedMinute.current = currentTimeStr;
           sendNotification(`${dueMeal.title}`, {
             body: dueMeal.description,
+            onClick: `/meals/${dueMeal.id}`
           });
         }
       }
@@ -103,7 +105,7 @@ export function NotificationManager() {
     const granted = await requestNotificationPermission();
     if (granted) {
       setPermissionStatus('granted');
-      sendNotification("Notifications Enabled!", {
+      await sendNotification("Notifications Enabled!", {
         body: "You will now receive alerts for your diet plan."
       });
       toast({
@@ -120,11 +122,11 @@ export function NotificationManager() {
     }
   };
 
-  const handleTestNotification = () => {
+  const handleTestNotification = async () => {
     if (permissionStatus !== 'granted') {
-      handleRequestPermission();
+      await handleRequestPermission();
     } else {
-      sendNotification("Test Alert Successful!", {
+      await sendNotification("Test Alert Successful!", {
         body: "Your ScheduleSync notifications are properly configured and working.",
       });
       toast({
